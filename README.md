@@ -13,10 +13,10 @@ We’ll check your solution on the following criteria:
   <li>  HTML5 Semantic elements usage </li>
   <li>  CSS3 usage </li>
   <li>  Code readability and maintainability </li>
-  <li>  Error handling <li>
+  <li>  Error handling </li>
 </ul>
 
-<b> Design </b>
+<h2> Design </h2>
 A simple Google search page, that shows both the image results of your search query as well as the normal Google search results.
 
 // The exact description of the problem can be seen under the docs folder
