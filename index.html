@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Search</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="css/search.css"/>
+	<script type="text/javascript"  data-main="js/common" src="js/require.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+</head>
+
+<div id="content">
+	<form id="search" action="javascript:Methods.search(googlesearch.value)">
+		  <input id="googlesearch" type="search" placeholder="Search..."/>
+		  <input id="searchbtn" type="submit" value="Search"/>
+	</form>
+
+	<div id="results">
+		<section id="images">
+			<h2>Image result</h2>
+			<div id="images-results">
+			</div>
+
+		</section>
+
+		<section id="web">
+			<h2>Web result</h2>
+			<div id="web-results">
+
+			<div id="paginator"></div>
+			</div>
+		</section>
+	</div>
+</div>
+
+<script language="Javascript" type="text/javascript">
+
+	require(["controllers/ImageController", "controllers/WebSearchController"], function (ImageController, webSearchController) {
+		 
+		 var imageController = new ImageController();
+
+		 return Methods = {
+				search: function(str) {
+					imageController.getImages(str);
+					webSearchController.getWebSearchResults(str);
+				}
+
+				,showPage: function(pageNumber) {
+					webSearchController.showPage(pageNumber);
+				}
+			}	
+	});
+
+</script>
+
+</html>
