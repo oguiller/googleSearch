@@ -20,3 +20,25 @@ We’ll check your solution on the following criteria:
 A simple Google search page, that shows both the image results of your search query as well as the normal Google search results.
 
 // The exact description of the problem can be seen under the docs folder
+
+<h2> Be aware of the Same Origin policy </h2>
+
+There is two ways of solving this issue but I thought you were aware of it. You can either disable the security options in the browser, in my Mac I used the following command to run the browser from console disabling the security options:</br>
+			
+		/usr/bin/open -a "/Applications/Google Chrome.app" --args --disable-web-security
+</br>
+
+Or either you can create a reverse proxy in your server, activating the proxy packages in apache I did it like this in my proxy because I had the same problem some time ago using some API so I had to fix that before. You will have to uncomment the mod_proxy modules and then add the following lines to your httpd.conf file:
+
+	<IfModule mod_proxy.c>
+
+	ProxyRequests Off
+
+	SSLProxyEngine on
+
+	ProxyPass /googlesearch http://ajax.googleapis.com/ajax/services/search
+	ProxyPassReverse /googlesearch http://ajax.googleapis.com/ajax/services/search
+
+	</IfModule>
+
+You can then perform the queries using something like, "http://localhost/googlesearch/web/xxxx" and "http://localhost/googlesearch/images/xxxx" where xxxx are the parameters you want to pass in your request.
